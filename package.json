@@ -1,17 +1,22 @@
 {
-  "name": "nextjs-tailwind-ts-boilarplate",
+  "name": "sovefi",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "MD.Kamrul Hasan",
+    "email": "kamrul24.official@gmail.com",
+    "mobile": "+8801823855998"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "npx prettier --write .",
+    "prettier:fix": "prettier --write .",
     "lint:check": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky",
+    "prepare": "husky install",
     "test:check": "npm run lint && npm run prettier:check",
     "test:fix": "npm run prettier:fix && npm run lint:fix",
     "test:all": "npm run test:fix && npm run test:check"
@@ -24,22 +29,22 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
-    "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "next": "^15.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.2",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^15.0.2",
     "husky": "^9.1.6",
-    "postcss": "^8",
-    "prettier": "3.3.3",
+    "postcss": "^8.4.24",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.0.0"
   }
 }
