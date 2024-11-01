@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/components/share/navbar";
-import Footer from "@/components/share/footer";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Dynamically import components
+const Navbar = dynamic(() => import("@/components/share/navbar"));
+const Footer = dynamic(() => import("@/components/share/footer"));
+const ScrollToTop = dynamic(() => import("@/components/share/scrollToTop"));
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,12 +32,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="shortcut icon"
+          href="/assets/sovefi.jpeg"
+          type="image/x-icon"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                  document.documentElement.classList.add(savedTheme);
+                } else {
+                  const userPrefersDark = window?.matchMedia('(prefers-color-scheme: dark)').matches;
+                  document.documentElement.classList.add(userPrefersDark ? 'dark' : 'light');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <Suspense fallback={<div>Loading navbar...</div>}>
+          <Navbar />
+        </Suspense>
         {children}
-        <Footer />
+        <Suspense fallback={<div>Loading scroll...</div>}>
+          <ScrollToTop />
+        </Suspense>
+        <Suspense fallback={<div>Loading footer...</div>}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );

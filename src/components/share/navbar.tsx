@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "./themeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,11 +15,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window?.scrollY > 10);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window?.addEventListener("scroll", handleScroll);
+    return () => window?.removeEventListener("scroll", handleScroll);
   }, []);
 
   const NavItems = () => (
@@ -27,6 +28,7 @@ export default function Navbar() {
       <Link href="/">About</Link>
       <Button variant="outline">Sign In</Button>
       <Button>APPLY NOW</Button>
+      <ThemeToggle />
     </>
   );
 
