@@ -93,7 +93,7 @@ export default function ApplyLoans() {
                   : index + 1 < step
                     ? "bg-primary text-white"
                     : "bg-secondary",
-                "clip-path-triangle",
+                "clip-path-triangle"
               )}
             >
               {label}
@@ -112,7 +112,7 @@ export default function ApplyLoans() {
               <ChevronDown
                 className={cn(
                   "h-5 w-5 transition-transform",
-                  isBasicReqOpen && "rotate-180",
+                  isBasicReqOpen && "rotate-180"
                 )}
               />
             </CollapsibleTrigger>
@@ -310,8 +310,8 @@ export default function ApplyLoans() {
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                {step < 4 ? "Next" : "Submit"}
+              <Button type="submit" size="lg" className="w-fit">
+                {step < 4 ? "Continue" : "Submit"}
               </Button>
             </form>
           </Form>
