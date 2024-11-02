@@ -25,9 +25,11 @@ export default function Navbar() {
   const NavItems = () => (
     <>
       <Link href="/">Lones</Link>
-      <Link href="/">About</Link>
+      <Link href="/about">About</Link>
       <Button variant="outline">Sign In</Button>
-      <Button>APPLY NOW</Button>
+      <Link href="/applyLoans">
+        <Button>APPLY NOW</Button>
+      </Link>
       <ThemeToggle />
     </>
   );
@@ -44,7 +46,7 @@ export default function Navbar() {
           <Image
             src="/assets/sovefi.jpeg"
             alt="Sovefi logo"
-            height={isScrolled ? 60 : 70}
+            height={isScrolled ? 62 : 72}
             width={isScrolled ? 60 : 70}
             className="transition-all duration-200"
           />

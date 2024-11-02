@@ -24,8 +24,12 @@ export default function RateCalculator() {
               <SelectItem value="auto-refinance">
                 Auto Loan Refinance
               </SelectItem>
-              <SelectItem value="new-auto">New Auto Loan</SelectItem>
-              <SelectItem value="used-auto">Used Auto Loan</SelectItem>
+              <SelectItem value="new-auto" disabled={true}>
+                New Auto Loan
+              </SelectItem>
+              <SelectItem value="used-auto" disabled={true}>
+                Used Auto Loan
+              </SelectItem>
             </SelectContent>
           </Select>
           <Input type="number" placeholder="Enter desired loan amount" />

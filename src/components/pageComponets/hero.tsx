@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -14,12 +15,15 @@ export default function HeroSection() {
           <p className="text-sm">Fixed rate 7.19% - 14.49% APR</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button
-            size="lg"
-            className="bg-[#000080] hover:bg-[#000060] text-white"
-          >
-            APPLY NOW
-          </Button>
+          <Link href="/applyLoans">
+            {" "}
+            <Button
+              size="lg"
+              className="bg-[#000080] hover:bg-[#000060] text-white"
+            >
+              APPLY NOW
+            </Button>
+          </Link>
           <Button
             size="lg"
             variant="outline"
