@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const NavItems = () => (
     <>
-      <Link href="/">Lone</Link>
+      <Link href="/">Lones</Link>
       <Link href="/">About</Link>
       <Button variant="outline">Sign In</Button>
       <Button>APPLY NOW</Button>
