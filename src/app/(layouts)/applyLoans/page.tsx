@@ -93,7 +93,7 @@ export default function ApplyLoans() {
                   : index + 1 < step
                     ? "bg-primary text-white"
                     : "bg-secondary",
-                "clip-path-triangle"
+                "clip-path-triangle",
               )}
             >
               {label}
@@ -112,7 +112,7 @@ export default function ApplyLoans() {
               <ChevronDown
                 className={cn(
                   "h-5 w-5 transition-transform",
-                  isBasicReqOpen && "rotate-180"
+                  isBasicReqOpen && "rotate-180",
                 )}
               />
             </CollapsibleTrigger>
