@@ -36,7 +36,7 @@ export default function Navbar() {
     <div
       className={cn(
         "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200",
-        isScrolled ? "h-20" : "h-24",
+        isScrolled ? "h-20" : "h-24"
       )}
     >
       <nav className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
@@ -48,7 +48,12 @@ export default function Navbar() {
             width={isScrolled ? 60 : 70}
             className="transition-all duration-200"
           />
-          <span className="text-primary text-xl font-extrabold">Sovefi</span>
+          <span className="text-primary text-xl font-extrabold">
+            Sovefi <br />{" "}
+            <small className="text-sm font-extralight border-b-2 border-primary">
+              Uplifting Life 1 at a Time...
+            </small>
+          </span>
         </Link>
         <div className="hidden md:flex items-center space-x-4">
           <NavItems />
