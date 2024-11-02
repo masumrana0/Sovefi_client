@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Providers from "./providers";
 
 // Dynamically import components
 const Navbar = dynamic(() => import("@/components/share/navbar"));
@@ -38,36 +39,23 @@ export default function RootLayout({
           href="/assets/sovefi.jpeg"
           type="image/x-icon"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                  document.documentElement.classList.add(savedTheme);
-                } else {
-                  const userPrefersDark = window?.matchMedia('(prefers-color-scheme: dark)').matches;
-                  document.documentElement.classList.add(userPrefersDark ? 'dark' : 'light');
-                }
-              })();
-            `,
-          }}
-        />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Suspense fallback={<div>Loading navbar...</div>}>
-          <Navbar />
-        </Suspense>
-        {children}
-        <Suspense fallback={<div>Loading scroll...</div>}>
-          <ScrollToTop />
-        </Suspense>
-        <Suspense fallback={<div>Loading footer...</div>}>
-          <Footer />
-        </Suspense>
-      </body>
+      <Providers>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Suspense fallback={<div>Loading navbar...</div>}>
+            <Navbar />
+          </Suspense>
+          {children}
+          <Suspense fallback={<div>Loading scroll...</div>}>
+            <ScrollToTop />
+          </Suspense>
+          <Suspense fallback={<div>Loading footer...</div>}>
+            <Footer />
+          </Suspense>
+        </body>
+      </Providers>
     </html>
   );
 }

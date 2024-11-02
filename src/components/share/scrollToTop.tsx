@@ -26,7 +26,7 @@ const ScrollToTop: FC = () => {
   }, []);
 
   return (
-    <div title="Scroll To Top">
+    <div suppressHydrationWarning title="Scroll To Top">
       <div className="fixed bottom-10 right-10 group">
         {isVisible && (
           <Button variant="default" size="round" onClick={scrollToTop}>
