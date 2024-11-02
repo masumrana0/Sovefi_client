@@ -11,24 +11,25 @@ import ThemeToggle from "./themeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // New state to track mount
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window?.scrollY > 10);
-    };
-
-    window?.addEventListener("scroll", handleScroll);
-    return () => window?.removeEventListener("scroll", handleScroll);
+    setIsMounted(true); // Ensure this runs on the client
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const NavItems = () => (
     <>
-      <Link href="/">Lones</Link>
+      <Link href="/">Loans</Link>
       <Link href="/about">About</Link>
-      <Button variant="outline">Sign In</Button>
+      <Button className="capitalize" variant="outline">
+        Sign In
+      </Button>
       <Link href="/applyLoans">
-        <Button>APPLY NOW</Button>
+        <Button className="capitalize">APPLY NOW</Button>
       </Link>
       <ThemeToggle />
     </>
@@ -46,17 +47,20 @@ export default function Navbar() {
           <Image
             src="/assets/sovefi.jpeg"
             alt="Sovefi logo"
-            height={isScrolled ? 62 : 72}
-            width={isScrolled ? 60 : 70}
+            // Set default height and width for SSR, adjust dynamically only if mounted
+            height={isMounted && isScrolled ? 62 : 72}
+            width={isMounted && isScrolled ? 60 : 70}
             className="transition-all duration-200"
           />
-          <span className="text-primary text-xl font-extrabold">
-            Sovefi <br />{" "}
+          <p className="text-primary font-extrabold">
+            <span className="text-md p-0">Sovefi</span>
+            <br />
             <small className="text-sm font-extralight border-b-2 border-primary">
               Uplifting Life 1 at a Time...
             </small>
-          </span>
+          </p>
         </Link>
+
         <div className="hidden md:flex items-center space-x-4">
           <NavItems />
         </div>

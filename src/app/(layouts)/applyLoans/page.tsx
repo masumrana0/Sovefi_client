@@ -67,7 +67,7 @@ export default function ApplyLoans() {
     <div className="min-h-screen mt-24 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
-          <h1 className="mb-6 text-3xl font-bold text-[#000066]">
+          <h1 className="mb-6 text-3xl font-bold text-primary">
             Loan Application
           </h1>
           <div className="mb-4 rounded border border-red-200 p-4 text-sm">
@@ -87,13 +87,13 @@ export default function ApplyLoans() {
             <div
               key={label}
               className={cn(
-                "relative flex-1 p-4 text-center text-sm font-medium",
+                "relative flex-1 p-4 text-center text-sm font-medium border-2",
                 index + 1 === step
-                  ? "bg-[#ff4400] text-white"
+                  ? "bg-primary text-white"
                   : index + 1 < step
-                    ? "bg-[#000066] text-white"
-                    : "bg-[#000066]/80 text-white/80",
-                "clip-path-triangle"
+                    ? "bg-primary text-white"
+                    : "bg-secondary",
+                "clip-path-triangle",
               )}
             >
               {label}
@@ -107,12 +107,12 @@ export default function ApplyLoans() {
             onOpenChange={setIsBasicReqOpen}
             className="mb-8"
           >
-            <CollapsibleTrigger className="flex w-full items-center justify-between text-lg font-bold text-[#000066]">
+            <CollapsibleTrigger className="flex w-full items-center justify-between text-lg font-bold text-primary">
               Basic Requirements
               <ChevronDown
                 className={cn(
                   "h-5 w-5 transition-transform",
-                  isBasicReqOpen && "rotate-180"
+                  isBasicReqOpen && "rotate-180",
                 )}
               />
             </CollapsibleTrigger>
