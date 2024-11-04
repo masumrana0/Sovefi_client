@@ -32,7 +32,7 @@ const formSchema = z.object({
     ["auto-refinance", "home-improvement", "debt-consolidation"],
     {
       required_error: "Please select a loan purpose",
-    }
+    },
   ),
   referralSource: z.enum(["search", "social", "friend"], {
     required_error: "Please select how you heard about us",
@@ -241,7 +241,7 @@ export default function LoanInfoForm() {
           )}
         />
 
-        <Button type="submit" size="lg" className="w-fit">
+        <Button type="submit" size="lg" className="w-full">
           Continue
         </Button>
       </form>

@@ -25,6 +25,7 @@ export default function Navbar() {
     <>
       <Link href="/">Loans</Link>
       <Link href="/about">About</Link>
+      <Link href="/contact">Contact</Link>
       <Link href="/auth">
         <Button className="capitalize" variant="outline">
           Sign In

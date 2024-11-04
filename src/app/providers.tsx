@@ -1,6 +1,8 @@
 "use client";
 
 import React, { ReactNode, useEffect } from "react";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store/store";
 
 const Providers = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
@@ -17,7 +19,11 @@ const Providers = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return (
+    <>
+      <Provider store={store}>{children}</Provider>
+    </>
+  );
 };
 
 export default Providers;
