@@ -4,43 +4,53 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="grid lg:grid-cols-2 min-h-[600px] bg-primary">
-      <div className="max-w-7xl mx-auto flex flex-col justify-center p-8 lg:p-16 text-white">
-        <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-          Auto <span className="font-normal">refinancing</span>
-        </h1>
-        <div className="mb-8">
-          <p className="text-3xl font-bold">from 7.19%*</p>
-          <p className="text-sm mt-2">*Fixed rate with AutoPay</p>
-          <p className="text-sm">Fixed rate 7.19% - 14.49% APR</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/applyLoans">
-            {" "}
-            <Button
-              size="lg"
-              className="bg-[#000080] hover:bg-[#000060] text-white"
-            >
-              APPLY NOW
-            </Button>
-          </Link>
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-transparent border-white text-white hover:bg-white/10"
-          >
-            SEE RATES & TERMS
-          </Button>
+    <section>
+      <div className="relative h-[554px]">
+        <Image
+          src="/assets/car lone.jpeg"
+          alt="Car financing"
+          width={1920}
+          height={500}
+          className="absolute h-full w-full object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/50">
+          <div className="max-w-7xl mx-auto flex h-full items-center px-4">
+            <div className="max-w-xl rounded-lg bg-white/90 dark:bg-secondary p-6 backdrop-blur-sm text-black">
+              <h1 className="text-3xl font-bold text-black dark:text-white">
+                Auto Loans
+              </h1>
+              <p className="mt-2 text-muted-foreground text-black dark:text-white">
+                Explore borrowing options for new or used cars. Try our helpful
+                tools and calculators.
+              </p>
+              <Link href="/applyLoans">
+                <Button className="mt-4" size="lg">
+                  Apply Now
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="relative hidden lg:block">
-        <Image
-          src="/assets/hero (2).jpg"
-          alt="Happy couple sitting in car trunk"
-          className="absolute inset-0 w-full h-full object-cover"
-          width={600}
-          height={600}
-        />
+      <div className="border-b text-white shadow-xl">
+        <div className="max-w-7xl mx-auto flex gap-4 overflow-x-auto px-4 py-2">
+          <Button className="bg-white text-black" variant="ghost">
+            Buy A Car
+          </Button>
+          <Button className="bg-white text-black" variant="ghost">
+            Refinance Your Car
+          </Button>
+          <Button className="bg-white text-black" variant="ghost">
+            PNC Total Auto
+          </Button>
+          <Button className="bg-white text-black" variant="ghost">
+            Have Questions?
+          </Button>
+          <Button variant="default" className="ml-auto">
+            Apply Now
+          </Button>
+        </div>
       </div>
     </section>
   );
