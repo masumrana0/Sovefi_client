@@ -48,7 +48,7 @@ const ContactPage: FC = () => {
 
   const contactInfos = [
     { id: 0, data: "sovefi@gmail.com", icon: <EnvelopeOpenIcon /> },
-    { id: 1, data: "+88 01823855998", icon: <MobileIcon /> },
+    { id: 1, data: "113-232-2322", icon: <MobileIcon /> },
     {
       id: 2,
       data: "Halishar, Chattogram, Bangladesh",

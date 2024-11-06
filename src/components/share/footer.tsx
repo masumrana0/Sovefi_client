@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Footer() {
   const categories = [
@@ -78,6 +79,9 @@ export default function Footer() {
               Careers
             </Link>
           </div>
+          <Link href="/faq">
+            <Button>FAQ</Button>
+          </Link>
           <div className="flex gap-4">
             <Youtube className="w-6 h-6" />
             <Facebook className="w-6 h-6" />

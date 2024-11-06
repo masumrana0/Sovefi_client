@@ -61,7 +61,7 @@ const signupSchema = z
 const AuthPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState("login");
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
-    null
+    null,
   );
 
   // Login form
@@ -85,7 +85,7 @@ const AuthPage: React.FC = () => {
   });
 
   const handleProfileImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (file) {
