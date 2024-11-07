@@ -24,6 +24,7 @@ export default function Navbar() {
   const NavItems = () => (
     <>
       <Link href="/">Loans</Link>
+      <Link href="/financing">Financing</Link>
       <Link href="/about">About</Link>
       <Link href="/contact">Contact</Link>
       <Link href="/auth">
