@@ -101,10 +101,10 @@ export default function LoanInfoForm() {
                   <SelectItem value="auto-refinance">
                     Auto Loan Refinance
                   </SelectItem>
-                  <SelectItem value="home-improvement">
+                  <SelectItem disabled value="home-improvement">
                     Home Improvement
                   </SelectItem>
-                  <SelectItem value="debt-consolidation">
+                  <SelectItem disabled value="debt-consolidation">
                     Debt Consolidation
                   </SelectItem>
                 </SelectContent>
@@ -241,7 +241,7 @@ export default function LoanInfoForm() {
           )}
         />
 
-        <Button type="submit" size="lg" className="w-full">
+        <Button type="submit" size="lg" className="w-full text-xl">
           Continue
         </Button>
       </form>

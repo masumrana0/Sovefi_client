@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section>
       <div className="relative h-[554px]">
         <Image
-          src="/assets/car lone.jpeg"
+          src="/assets/hero gi.gif"
           alt="Car financing"
           width={1920}
           height={500}
