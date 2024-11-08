@@ -182,7 +182,7 @@ export default function SecurityInfoForm() {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full text-xl">
             Continue
           </Button>
         </form>

@@ -35,14 +35,27 @@ export default function ApplyLoans() {
 
         <Tabs defaultValue="loan-info" className="mb-8">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="loan-info">Loan Information</TabsTrigger>
-            <TabsTrigger value="personal-info">
+            <TabsTrigger className="bg-primary text-black" value="loan-info">
+              Loan Information
+            </TabsTrigger>
+            <TabsTrigger
+              className="bg-yellow-300 text-black"
+              value="personal-info"
+            >
               Personal Information
             </TabsTrigger>
-            <TabsTrigger value="security-info">
+            <TabsTrigger
+              className="bg-orange-400 text-black"
+              value="security-info"
+            >
               Security Information
             </TabsTrigger>
-            <TabsTrigger value="confirm-submit">Confirm and Submit</TabsTrigger>
+            <TabsTrigger
+              className="bg-purple-400 text-black"
+              value="confirm-submit"
+            >
+              Confirm and Submit
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="loan-info">
             <div className="rounded-lg p-6 shadow-sm">
@@ -56,7 +69,7 @@ export default function ApplyLoans() {
                   <ChevronDown
                     className={cn(
                       "h-5 w-5 transition-transform",
-                      isBasicReqOpen && "rotate-180",
+                      isBasicReqOpen && "rotate-180"
                     )}
                   />
                 </CollapsibleTrigger>

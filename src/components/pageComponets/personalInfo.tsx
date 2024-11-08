@@ -406,18 +406,7 @@ export default function PersonalInfoForm() {
                     all that apply.
                   </FormLabel>
                   <div className="grid grid-cols-2 gap-2">
-                    {[
-                      "United States",
-                      "Cuba",
-                      "Iran",
-                      "Burma/Myanmar",
-                      "Syria",
-                      "Sudan",
-                      "North Korea",
-                      "Russia",
-                      "Ukraine",
-                      "Belarus",
-                    ].map((country) => (
+                    {["United States"].map((country) => (
                       <FormField
                         key={country}
                         control={form.control}
@@ -439,8 +428,8 @@ export default function PersonalInfoForm() {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== country,
-                                          ),
+                                            (value) => value !== country
+                                          )
                                         );
                                   }}
                                 />
@@ -641,7 +630,7 @@ export default function PersonalInfoForm() {
             />
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full text-xl">
             Continue
           </Button>
         </form>
