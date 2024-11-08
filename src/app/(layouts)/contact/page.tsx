@@ -1,7 +1,9 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   MobileIcon,
   EnvelopeOpenIcon,
@@ -22,8 +24,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+// import { WhatsappIcon } from "lucide-react";
 
-const ContactPage: FC = () => {
+export default function ContactPage() {
+  const [appointmentDate, setAppointmentDate] = useState<Date | null>(null);
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -43,7 +48,7 @@ const ContactPage: FC = () => {
     subject: string;
     phone: string;
   }) => {
-    console.log(data);
+    console.log({ ...data, appointmentDate });
   };
 
   const contactInfos = [
@@ -69,7 +74,7 @@ const ContactPage: FC = () => {
           </p>
         </div>
 
-        <div className="rounded-xl p-4 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8 mb-5">
+        <div className="rounded-xl p-4 flex flex-col md:flex-row items-start justify-center space-y-8 md:space-y-0 md:space-x-8 mb-5">
           <div className="w-full mx-auto">
             <Form {...form}>
               <form
@@ -183,6 +188,17 @@ const ContactPage: FC = () => {
                     </FormItem>
                   )}
                 />
+                <FormItem>
+                  <FormLabel>Appointment Date</FormLabel>
+                  <FormControl>
+                    <DatePicker
+                      selected={appointmentDate}
+                      onChange={(date) => setAppointmentDate(date)}
+                      className="w-full p-2 border rounded-md bg-white mx-3"
+                      placeholderText="Select appointment date"
+                    />
+                  </FormControl>
+                </FormItem>
                 <div className="flex items-center justify-center py-2">
                   <Button className="w-full md:w-1/3" type="submit">
                     Send Your Message
@@ -227,11 +243,19 @@ const ContactPage: FC = () => {
               </div>
               <p className="text-sm text-center">Social Profiles</p>
             </div>
+            <Link
+              href="https://wa.me/1234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full" variant="outline">
+                {/* <WhatsappIcon className="mr-2 h-4 w-4" /> */}
+                Chat on WhatsApp
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default ContactPage;
+}
