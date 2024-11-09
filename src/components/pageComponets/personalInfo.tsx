@@ -428,8 +428,8 @@ export default function PersonalInfoForm() {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== country
-                                          )
+                                            (value) => value !== country,
+                                          ),
                                         );
                                   }}
                                 />
