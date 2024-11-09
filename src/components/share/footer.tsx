@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Facebook, Github, Instagram, Linkedin, Twitch, X } from "lucide-react";
 
 export default function Footer() {
   const categories = [
@@ -41,7 +42,61 @@ export default function Footer() {
                 href="/faq"
                 className="text-sm text-muted-foreground hover:text-primary"
               >
-                <Button>Faq</Button>
+                <Button>FAQ</Button>
+              </Link>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-bold mb-4">Useful Links</h3>
+            <ul className="space-y-2">
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <Facebook width="6" height="6" />
+                </Button>
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <Instagram width="6" height="6" />
+                </Button>
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <Linkedin width="6" height="6" />
+                </Button>
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <Github width="6" height="6" />
+                </Button>
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <Twitch width="6" height="6" />
+                </Button>
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
+                <Button variant="ghost">
+                  <X width="6" height="6" />
+                </Button>
               </Link>
             </ul>
           </div>

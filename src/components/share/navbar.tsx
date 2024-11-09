@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,11 +7,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./themeToggle";
+// import { useAppSelector } from "@/redux/hook";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMounted, setIsMounted] = useState(false); // New state to track mount
+  const [isMounted, setIsMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // const isLoggedin = useAppSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     setIsMounted(true); // Ensure this runs on the client

@@ -143,7 +143,9 @@ export default function AutoLoanCalculator() {
               <h3 className="text-lg font-semibold">
                 Estimated Monthly Payment
               </h3>
-              <div className="mt-4 text-4xl font-bold">${monthlyPayment}</div>
+              <div className="mt-4 text-4xl font-bold">
+                ${monthlyPayment.toFixed(2)}
+              </div>
               <p className="text-sm text-muted-foreground">
                 Estimated APR: {loan.interestRate.toFixed(2)}%
               </p>
