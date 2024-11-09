@@ -114,7 +114,7 @@ export default function PersonalInfoForm() {
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>First</FormLabel>
+                    <FormLabel className="text-xl">First</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -128,7 +128,7 @@ export default function PersonalInfoForm() {
                 name="middleInitial"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>MI</FormLabel>
+                    <FormLabel className="text-xl">MI</FormLabel>
                     <FormControl>
                       <Input {...field} maxLength={1} className="w-16" />
                     </FormControl>
@@ -142,7 +142,7 @@ export default function PersonalInfoForm() {
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Last</FormLabel>
+                    <FormLabel className="text-xl">Last</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -157,7 +157,7 @@ export default function PersonalInfoForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel className="text-xl">Email Address</FormLabel>
                   <FormControl>
                     <Input {...field} type="email" />
                   </FormControl>
@@ -172,7 +172,9 @@ export default function PersonalInfoForm() {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Home Street Address (no P.O. boxes)</FormLabel>
+                    <FormLabel className="text-xl">
+                      Home Street Address (no P.O. boxes)
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -186,7 +188,7 @@ export default function PersonalInfoForm() {
                 name="aptType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Apt, etc.</FormLabel>
+                    <FormLabel className="text-xl">Apt, etc.</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -214,7 +216,7 @@ export default function PersonalInfoForm() {
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>City</FormLabel>
+                    <FormLabel className="text-xl">City</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -228,7 +230,7 @@ export default function PersonalInfoForm() {
                 name="state"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>State</FormLabel>
+                    <FormLabel className="text-xl">State</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -256,7 +258,7 @@ export default function PersonalInfoForm() {
                 name="zipCode"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Zip Code</FormLabel>
+                    <FormLabel className="text-xl">Zip Code</FormLabel>
                     <FormControl>
                       <Input {...field} maxLength={5} />
                     </FormControl>
@@ -272,7 +274,9 @@ export default function PersonalInfoForm() {
                 name="phoneNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Home Phone (with area code)</FormLabel>
+                    <FormLabel className="text-xl">
+                      Home Phone (with area code)
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -287,7 +291,7 @@ export default function PersonalInfoForm() {
                   name="timeAtAddress.years"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Years</FormLabel>
+                      <FormLabel className="text-xl">Years</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -307,7 +311,7 @@ export default function PersonalInfoForm() {
                   name="timeAtAddress.months"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Months</FormLabel>
+                      <FormLabel className="text-xl">Months</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -328,7 +332,7 @@ export default function PersonalInfoForm() {
                 name="housingStatus"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Housing Status</FormLabel>
+                    <FormLabel className="text-xl">Housing Status</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -358,7 +362,9 @@ export default function PersonalInfoForm() {
                 name="ssn"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Social Security (9 digits)</FormLabel>
+                    <FormLabel className="text-xl">
+                      Social Security (9 digits)
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} type="password" />
                     </FormControl>
@@ -372,7 +378,9 @@ export default function PersonalInfoForm() {
                 name="dateOfBirth"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Date Of Birth (mm/dd/yyyy)</FormLabel>
+                    <FormLabel className="text-xl">
+                      Date Of Birth (mm/dd/yyyy)
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} placeholder="MM/DD/YYYY" />
                     </FormControl>
@@ -386,7 +394,9 @@ export default function PersonalInfoForm() {
                 name="driversLicense"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Drivers License (last 4 digits)</FormLabel>
+                    <FormLabel className="text-xl">
+                      Drivers License (last 4 digits)
+                    </FormLabel>
                     <FormControl>
                       <Input {...field} maxLength={4} />
                     </FormControl>
@@ -401,7 +411,7 @@ export default function PersonalInfoForm() {
               name="citizenship"
               render={() => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="text-xl">
                     Are you a citizen of any of the following countries? Check
                     all that apply.
                   </FormLabel>
@@ -428,8 +438,8 @@ export default function PersonalInfoForm() {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== country,
-                                          ),
+                                            (value) => value !== country
+                                          )
                                         );
                                   }}
                                 />
@@ -459,7 +469,7 @@ export default function PersonalInfoForm() {
               name="workStatus"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Work Status</FormLabel>
+                  <FormLabel className="text-xl">Work Status</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -493,7 +503,7 @@ export default function PersonalInfoForm() {
               name="otherIncome.hasOtherIncome"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>
+                  <FormLabel className="text-xl">
                     Do you have Other &quot;Annual&quot; Income?
                   </FormLabel>
                   <FormControl>
@@ -531,7 +541,9 @@ export default function PersonalInfoForm() {
               name="monthlyHousingCosts"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Total Monthly Housing Costs</FormLabel>
+                  <FormLabel className="text-xl">
+                    Total Monthly Housing Costs
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -556,7 +568,9 @@ export default function PersonalInfoForm() {
               name="homeEquity"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Estimated Equity in Home (if owned)</FormLabel>
+                  <FormLabel className="text-xl">
+                    Estimated Equity in Home (if owned)
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -581,7 +595,7 @@ export default function PersonalInfoForm() {
               name="checkingSavings"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="text-xl">
                     Checking and Savings Balances plus Stocks and Bonds
                   </FormLabel>
                   <FormControl>
@@ -608,7 +622,7 @@ export default function PersonalInfoForm() {
               name="retirementAssets"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="text-xl">
                     Retirement Assets (401(k), 403(b), 457, IRA, etc)
                   </FormLabel>
                   <FormControl>

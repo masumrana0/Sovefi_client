@@ -108,7 +108,7 @@ export default function ConfirmSubmit() {
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
+                    <FormLabel className="text-xl">
                       I/We have read and acknowledge receipt of
                       LightStream&apos;s Statement on the Use of Electronic
                       Records, and hereby agree to receive the loan agreement
@@ -133,7 +133,7 @@ export default function ConfirmSubmit() {
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
+                    <FormLabel className="text-xl">
                       I acknowledge that loan proceeds cannot be deposited into
                       a business or third-party account. Loan proceeds must be
                       deposited into your personal bank account that is owned by
@@ -157,7 +157,7 @@ export default function ConfirmSubmit() {
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
+                    <FormLabel className="text-xl">
                       I authorize LightStream to obtain a consumer report to be
                       used in evaluation of my application and for any
                       legitimate business purpose in connection with my ongoing

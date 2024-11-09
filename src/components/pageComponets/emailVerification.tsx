@@ -20,7 +20,7 @@ const EmailVerification: React.FC<{ token: string }> = ({ token }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const previousProfileData = useAppSelector(
-    (state) => state.auth.profile
+    (state) => state.auth.profile,
   ) as IProfile;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updatedProfileData = { ...previousProfileData, isEmailVerified: true };
@@ -39,7 +39,7 @@ const EmailVerification: React.FC<{ token: string }> = ({ token }) => {
           setErrorMessage(
             res?.error?.message === "jwt expired"
               ? "Invalid or expired link. Please try again."
-              : res?.error?.message || "An unexpected error occurred"
+              : res?.error?.message || "An unexpected error occurred",
           );
           //   message.error(errorMessage);
           alert(errorMessage);

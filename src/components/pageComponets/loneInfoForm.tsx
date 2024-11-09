@@ -68,7 +68,7 @@ export default function LoanInfoForm() {
           name="applicationType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Application Type</FormLabel>
+              <FormLabel className="text-xl">Application Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -90,7 +90,7 @@ export default function LoanInfoForm() {
           name="loanPurpose"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Primary Loan Purpose</FormLabel>
+              <FormLabel className="text-xl">Primary Loan Purpose</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -120,7 +120,9 @@ export default function LoanInfoForm() {
             name="referralSource"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>How did you hear about us?</FormLabel>
+                <FormLabel className="text-xl">
+                  How did you hear about us?
+                </FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -145,7 +147,9 @@ export default function LoanInfoForm() {
             name="referralDetails"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>More specific, if applicable</FormLabel>
+                <FormLabel className="text-xl">
+                  More specific, if applicable
+                </FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -160,7 +164,7 @@ export default function LoanInfoForm() {
           name="zipCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>ZIP Code</FormLabel>
+              <FormLabel className="text-xl">ZIP Code</FormLabel>
               <FormControl>
                 <Input {...field} maxLength={5} className="max-w-[200px]" />
               </FormControl>
@@ -175,7 +179,7 @@ export default function LoanInfoForm() {
             name="loanAmount"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Loan Amount</FormLabel>
+                <FormLabel className="text-xl">Loan Amount</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -193,7 +197,7 @@ export default function LoanInfoForm() {
             name="loanTerm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Loan Term (months)</FormLabel>
+                <FormLabel className="text-xl">Loan Term (months)</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -215,7 +219,7 @@ export default function LoanInfoForm() {
           name="paymentMethod"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Payment Method</FormLabel>
+              <FormLabel className="text-xl">Payment Method</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -226,13 +230,13 @@ export default function LoanInfoForm() {
                     <FormControl>
                       <RadioGroupItem value="autopay" />
                     </FormControl>
-                    <FormLabel>AutoPay</FormLabel>
+                    <FormLabel className="text-xl">AutoPay</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3">
                     <FormControl>
                       <RadioGroupItem value="invoice" />
                     </FormControl>
-                    <FormLabel>Invoice</FormLabel>
+                    <FormLabel className="text-xl">Invoice</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>

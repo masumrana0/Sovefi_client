@@ -89,7 +89,9 @@ export default function SecurityInfoForm() {
             name="userId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>User ID (6-50 characters)</FormLabel>
+                <FormLabel className="text-xl">
+                  User ID (6-50 characters)
+                </FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -108,7 +110,9 @@ export default function SecurityInfoForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password (8-20 characters)</FormLabel>
+                <FormLabel className="text-xl">
+                  Password (8-20 characters)
+                </FormLabel>
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
@@ -127,7 +131,7 @@ export default function SecurityInfoForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Re-enter Password</FormLabel>
+                <FormLabel className="text-xl">Re-enter Password</FormLabel>
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
@@ -141,7 +145,7 @@ export default function SecurityInfoForm() {
             name="securityQuestion"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Security Question</FormLabel>
+                <FormLabel className="text-xl">Security Question</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -169,7 +173,7 @@ export default function SecurityInfoForm() {
             name="securityAnswer"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Security Answer</FormLabel>
+                <FormLabel className="text-xl">Security Answer</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
