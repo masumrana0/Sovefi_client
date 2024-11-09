@@ -1,11 +1,13 @@
 // store/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 
+import rootReducer from "../rootReducer";
+import { baseApi } from "../api/baseApi";
+const apiMiddleware = baseApi.middleware;
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiMiddleware),
 });
 
 // Types for the store
