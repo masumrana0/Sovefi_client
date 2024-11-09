@@ -30,7 +30,7 @@ import { setIsLoggedIn, setProfileInfo } from "@/redux/features/auth/authSlice";
 
 const SignupForm = () => {
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
-    null
+    null,
   );
   const [error, setError] = useState<string | null>(null);
   // const { toast } = useToast();
@@ -57,7 +57,7 @@ const SignupForm = () => {
 
   // Profile image change handler
   const handleProfileImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -69,7 +69,7 @@ const SignupForm = () => {
 
   // Form submission handler
   const onSignupSubmit = async (
-    values: z.infer<typeof authSchema.signupSchema>
+    values: z.infer<typeof authSchema.signupSchema>,
   ) => {
     const { profilePhoto, ...otherValues } = values;
     const formData = new FormData();

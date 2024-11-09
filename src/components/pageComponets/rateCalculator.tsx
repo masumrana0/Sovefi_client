@@ -42,7 +42,7 @@ export default function AutoLoanCalculator() {
   const calculateMonthlyPayment = (
     amount: number,
     months: number,
-    rate: number
+    rate: number,
   ): number => {
     const monthlyRate = rate / 100 / 12;
     return amount * (monthlyRate / (1 - Math.pow(1 + monthlyRate, -months)));
@@ -51,7 +51,7 @@ export default function AutoLoanCalculator() {
   const monthlyPayment = calculateMonthlyPayment(
     loan.amount,
     loan.term,
-    loan.interestRate
+    loan.interestRate,
   );
   const totalInterest = (monthlyPayment * loan.term - loan.amount).toFixed(2);
 

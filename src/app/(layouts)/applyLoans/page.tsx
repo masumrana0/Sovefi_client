@@ -90,7 +90,7 @@ export default function ApplyLoans() {
                   <ChevronDown
                     className={cn(
                       "h-5 w-5 transition-transform",
-                      isBasicReqOpen && "rotate-180"
+                      isBasicReqOpen && "rotate-180",
                     )}
                   />
                 </CollapsibleTrigger>
