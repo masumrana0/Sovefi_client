@@ -2,22 +2,28 @@
 
 import * as React from "react";
 import { ChevronDown, Download } from "lucide-react";
-
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import LoneInfoForm from "@/components/pageComponets/loneInfoForm";
 import SecurityInfoForm from "@/components/pageComponets/security-info-form";
 import PersonalInfoForm from "@/components/pageComponets/personalInfo";
 import ConfirmSubmit from "@/components/pageComponets/confarmSubmation";
 import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/redux/hook";
 
 export default function ApplyLoans() {
   const [isBasicReqOpen, setIsBasicReqOpen] = React.useState(true);
+
+  const currentStep = useAppSelector(
+    (state) => state.loanApplicationSteps.step
+  );
+
+  console.log("Current step: ", currentStep);
 
   const handleDownload = () => {
     const fileUrl = "../../../../public/assets/Loan Application Form.docx";
@@ -51,34 +57,41 @@ export default function ApplyLoans() {
           </div>
         </header>
 
+        {/* Wrap TabsList inside Tabs component */}
         <Tabs defaultValue="loan-info" className="mb-8">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger
               className="bg-primary text-white h-16"
               value="loan-info"
+              disabled={currentStep < 1}
             >
               Loan Information
             </TabsTrigger>
             <TabsTrigger
               className="bg-yellow-300 text-black h-16"
               value="personal-info"
+              disabled={currentStep < 2}
             >
               Personal Information
             </TabsTrigger>
             <TabsTrigger
               className="bg-orange-400 text-black h-16"
               value="security-info"
+              disabled={currentStep < 3}
             >
               Security Information
             </TabsTrigger>
             <TabsTrigger
               className="bg-purple-400 text-black h-16"
               value="confirm-submit"
+              disabled={currentStep < 4}
             >
               Confirm and Submit
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="loan-info">
+
+          {/* Conditional Rendering Based on Current Step */}
+          {currentStep === 1 && (
             <div className="rounded-lg p-6 shadow-sm">
               <Collapsible
                 open={isBasicReqOpen}
@@ -90,7 +103,7 @@ export default function ApplyLoans() {
                   <ChevronDown
                     className={cn(
                       "h-5 w-5 transition-transform",
-                      isBasicReqOpen && "rotate-180",
+                      isBasicReqOpen && "rotate-180"
                     )}
                   />
                 </CollapsibleTrigger>
@@ -108,25 +121,27 @@ export default function ApplyLoans() {
                   </p>
                 </CollapsibleContent>
               </Collapsible>
-
               <LoneInfoForm />
             </div>
-          </TabsContent>
-          <TabsContent value="personal-info">
+          )}
+
+          {currentStep === 2 && (
             <div className="rounded-lg p-6 shadow-sm">
               <PersonalInfoForm />
             </div>
-          </TabsContent>
-          <TabsContent value="security-info">
+          )}
+
+          {currentStep === 3 && (
             <div className="rounded-lg p-6 shadow-sm">
               <SecurityInfoForm />
             </div>
-          </TabsContent>
-          <TabsContent value="confirm-submit">
+          )}
+
+          {currentStep === 4 && (
             <div className="rounded-lg p-6 shadow-sm">
               <ConfirmSubmit />
             </div>
-          </TabsContent>
+          )}
         </Tabs>
       </div>
     </div>

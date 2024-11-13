@@ -17,6 +17,8 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, PenLine } from "lucide-react";
+import { useAppDispatch } from "@/redux/hook";
+import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
 
 const confirmSchema = z.object({
   acceptTerms: z.boolean().refine((val) => val === true, {
@@ -31,6 +33,8 @@ const confirmSchema = z.object({
 });
 
 export default function ConfirmSubmit() {
+  const dispatch = useAppDispatch();
+
   const form = useForm<z.infer<typeof confirmSchema>>({
     resolver: zodResolver(confirmSchema),
     defaultValues: {
@@ -42,6 +46,7 @@ export default function ConfirmSubmit() {
 
   function onSubmit(values: z.infer<typeof confirmSchema>) {
     console.log(values);
+    dispatch(nextStep());
   }
 
   const loanInfo = {

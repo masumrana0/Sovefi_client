@@ -25,6 +25,8 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
+import { useAppDispatch } from "@/redux/hook";
 
 const personalInfoSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -57,7 +59,7 @@ const personalInfoSchema = z.object({
           amount: z.number().optional(),
           source: z.string().optional(),
           description: z.string().optional(),
-        }),
+        })
       )
       .optional(),
   }),
@@ -85,6 +87,8 @@ const workStatuses = [
 ];
 
 export default function PersonalInfoForm() {
+  const dispatch = useAppDispatch();
+
   const form = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -99,6 +103,7 @@ export default function PersonalInfoForm() {
 
   function onSubmit(values: z.infer<typeof personalInfoSchema>) {
     console.log(values);
+    dispatch(nextStep());
   }
 
   return (
@@ -438,8 +443,8 @@ export default function PersonalInfoForm() {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== country,
-                                          ),
+                                            (value) => value !== country
+                                          )
                                         );
                                   }}
                                 />

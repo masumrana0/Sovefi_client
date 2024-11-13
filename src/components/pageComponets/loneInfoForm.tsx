@@ -23,6 +23,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAppDispatch } from "@/redux/hook";
+import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
 
 const formSchema = z.object({
   applicationType: z.enum(["individual", "joint"], {
@@ -32,7 +34,7 @@ const formSchema = z.object({
     ["auto-refinance", "home-improvement", "debt-consolidation"],
     {
       required_error: "Please select a loan purpose",
-    },
+    }
   ),
   referralSource: z.enum(["search", "social", "friend"], {
     required_error: "Please select how you heard about us",
@@ -49,6 +51,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export default function LoanInfoForm() {
+  const dispatch = useAppDispatch();
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,6 +62,7 @@ export default function LoanInfoForm() {
 
   function onSubmit(values: FormData) {
     console.log(values);
+    dispatch(nextStep());
   }
 
   return (
