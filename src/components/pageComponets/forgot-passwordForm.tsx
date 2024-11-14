@@ -31,7 +31,7 @@ const ForgotPasswordForm = () => {
       await setForgotPassword(data).unwrap();
       alert("Please check your email inbox");
       router.push("/"); // Redirect to homepage
-    } catch (error) {
+    } catch (error: any) {
       // console.log(error);
       setError(error?.message || "An unexpected error occurred.");
     }

@@ -20,10 +20,12 @@ export default function Navbar() {
   const isLoggedin = useAppSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
-    setIsMounted(true); // Ensure this runs on the client
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== "undefined") {
+      setIsMounted(true); // Ensure this runs on the client
+      const handleScroll = () => setIsScrolled(window.scrollY > 10);
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const NavItems = () => (
@@ -55,7 +57,7 @@ export default function Navbar() {
     <div
       className={cn(
         "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200",
-        isScrolled ? "h-20" : "h-24",
+        isScrolled ? "h-20" : "h-24"
       )}
     >
       <nav className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">

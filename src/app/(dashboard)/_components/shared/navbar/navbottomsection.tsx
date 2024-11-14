@@ -1,8 +1,9 @@
 "use client";
-import { ILayoutMenuItem } from "@/interface/layout";
+ 
 import Link from "next/link";
 import React from "react";
 import DNavBottomDropdown from "./navbottomdropdown";
+import { ILayoutMenuItem } from "@/interface/dashboard";
 
 const DNavBottomSection: React.FC<{ menuContent: ILayoutMenuItem[] }> = ({
   menuContent,

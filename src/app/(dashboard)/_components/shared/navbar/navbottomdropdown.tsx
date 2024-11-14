@@ -1,4 +1,7 @@
-import { ILayoutMenuChildrenItem, ILayoutMenuItem } from "@/interface/layout";
+import {
+  ILayoutMenuChildrenItem,
+  ILayoutMenuItem,
+} from "@/interface/dashboard";
 import Link from "next/link";
 import React, { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";

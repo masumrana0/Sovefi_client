@@ -33,14 +33,14 @@ const LoginForm: React.FC = () => {
   const [setSignin, { isLoading }] = useSigninMutation();
 
   const onLoginSubmit = async (
-    values: z.infer<typeof authSchema.loginSchema>,
+    values: z.infer<typeof authSchema.loginSchema>
   ) => {
     try {
       const res = await setSignin(values).unwrap();
       dispatch(setIsLoggedIn(res?.data?.accessToken));
       dispatch(setProfileInfo(res.data?.data.profile));
       router.push("/"); // Redirect to homepage
-    } catch (error) {
+    } catch (error: any) {
       // console.log(error);
       setError(error?.message || "An unexpected error occurred.");
     }
