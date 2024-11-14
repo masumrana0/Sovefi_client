@@ -1,3 +1,12 @@
+import {
+  LOAN_INFO,
+  PERSONAL_INFO,
+  SECURITY_INFO,
+} from "@/constant/storage.key";
+import {
+  getFromLocalStorageAsParse,
+  setToLocalStorageAsStringify,
+} from "@/utils/local-storage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 /** Interface representing detailed loan information */
@@ -57,25 +66,58 @@ interface ILoanApplication {
 }
 
 interface LoanApplicationState {
-  applications: ILoanApplication[];
-  currentApplication: ILoanApplication;
+  loanInfo: any | null;
+  personalInfo: any | null;
+  securityInfo: any | null;
+
+  step: number;
 }
 
 const initialState: LoanApplicationState = {
-  applications: [],
-  currentApplication: {},
+  loanInfo: getFromLocalStorageAsParse(LOAN_INFO),
+  personalInfo: getFromLocalStorageAsParse(PERSONAL_INFO),
+  securityInfo: getFromLocalStorageAsParse(SECURITY_INFO),
+  step: getFromLocalStorageAsParse("step") || 1,
 };
 
 const loanApplicationSlice = createSlice({
   name: "loanApplication",
   initialState,
   reducers: {
-    /** Updates loan information step */
-    updateLoanInformation: (
-      state,
-      action: PayloadAction<ILoanApplication["loanInformation"]>,
-    ) => {
-      state.currentApplication.loanInformation = action.payload;
+    setNext: (state) => {
+      const nextStep = state.step + 1;
+      state.step = nextStep;
+      setToLocalStorageAsStringify("step", nextStep);
+    },
+    setPrevious: (state) => {
+      const nextStep = state.step - 1;
+      if (nextStep > 0) {
+        setToLocalStorageAsStringify("step", nextStep);
+        state.step = nextStep;
+      }
+    },
+    setSpecificStep: (state, action: PayloadAction<number>) => {
+      const currentStep = state.step;
+      if (currentStep > action.payload) {
+        setToLocalStorageAsStringify("step", action.payload);
+        state.step = action.payload;
+      } else if (state.loanInfo && action.payload == 1) {
+        setToLocalStorageAsStringify("step", action.payload);
+        state.step = action.payload;
+      } else if (state.personalInfo && action.payload == 2) {
+        setToLocalStorageAsStringify("step", action.payload);
+        state.step = action.payload;
+      } else if (state.securityInfo && action.payload == 3) {
+        setToLocalStorageAsStringify("step", action.payload);
+        state.step = action.payload;
+      } else if (currentStep == 3 && action.payload == 4) {
+        setToLocalStorageAsStringify("step", action.payload);
+        state.step = action.payload;
+      }
+    },
+    updateLoanInformation: (state, action: any) => {
+      state.loanInfo = action.payload;
+      setToLocalStorageAsStringify(LOAN_INFO, action.payload);
     },
 
     /** Updates personal information step */
@@ -83,7 +125,8 @@ const loanApplicationSlice = createSlice({
       state,
       action: PayloadAction<ILoanApplication["personalInformation"]>,
     ) => {
-      state.currentApplication.personalInformation = action.payload;
+      state.personalInfo = action.payload;
+      setToLocalStorageAsStringify(PERSONAL_INFO, action.payload);
     },
 
     /** Updates security information step */
@@ -91,21 +134,8 @@ const loanApplicationSlice = createSlice({
       state,
       action: PayloadAction<ILoanApplication["securityInformation"]>,
     ) => {
-      state.currentApplication.securityInformation = action.payload;
-    },
-
-    /** Updates confirmation and submission step */
-    updateConfirmAndSubmit: (
-      state,
-      action: PayloadAction<ILoanApplication["confirmAndSubmit"]>,
-    ) => {
-      state.currentApplication.confirmAndSubmit = action.payload;
-    },
-
-    /** Finalizes and adds the current application to the applications list */
-    submitApplication: (state) => {
-      state.applications.push(state.currentApplication);
-      state.currentApplication = {}; // Reset for the next application
+      state.securityInfo = action.payload;
+      setToLocalStorageAsStringify(SECURITY_INFO, action.payload);
     },
   },
 });
@@ -114,8 +144,9 @@ export const {
   updateLoanInformation,
   updatePersonalInformation,
   updateSecurityInformation,
-  updateConfirmAndSubmit,
-  submitApplication,
+  setNext,
+  setPrevious,
+  setSpecificStep,
 } = loanApplicationSlice.actions;
 
 export default loanApplicationSlice.reducer;

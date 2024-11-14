@@ -19,6 +19,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { useSigninMutation } from "@/redux/api/auth/authApi";
 import { setIsLoggedIn, setProfileInfo } from "@/redux/features/auth/authSlice";
 import Link from "next/link";
+import DynamicButton from "../shared/Button";
 
 const LoginForm: React.FC = () => {
   const [error, setError] = useState(null);
@@ -29,7 +30,7 @@ const LoginForm: React.FC = () => {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const [setSignin] = useSigninMutation();
+  const [setSignin, { isLoading }] = useSigninMutation();
 
   const onLoginSubmit = async (
     values: z.infer<typeof authSchema.loginSchema>,
@@ -90,9 +91,9 @@ const LoginForm: React.FC = () => {
           </Link>
         </div>
         <p className="text-red-500 text-sm md:text-md ">{error}</p>
-        <Button type="submit" className="w-full">
+        <DynamicButton isLoading={isLoading} className="w-full" type="submit">
           Login
-        </Button>
+        </DynamicButton>
       </form>
     </Form>
   );

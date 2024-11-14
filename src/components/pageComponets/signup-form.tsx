@@ -27,6 +27,7 @@ import { useSignupMutation } from "@/redux/api/auth/authApi";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hook";
 import { setIsLoggedIn, setProfileInfo } from "@/redux/features/auth/authSlice";
+import DynamicButton from "../shared/Button";
 
 const SignupForm = () => {
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
@@ -37,7 +38,7 @@ const SignupForm = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const [signup] = useSignupMutation();
+  const [signup, { isLoading }] = useSignupMutation();
 
   // Form setup
   const signupForm = useForm<z.infer<typeof authSchema.signupSchema>>({
@@ -246,9 +247,9 @@ const SignupForm = () => {
             )}
           />
           <p className="text-red-500 text-sm md:text-md ">{error}</p>
-          <Button type="submit" className="w-full">
+          <DynamicButton isLoading={isLoading} className="w-full" type="submit">
             Sign Up
-          </Button>
+          </DynamicButton>
         </form>
       </Form>
     </div>

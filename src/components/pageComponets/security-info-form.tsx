@@ -24,7 +24,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAppDispatch } from "@/redux/hook";
-import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
+
+import { setToLocalStorageAsStringify } from "@/utils/local-storage";
+import { SECURITY_INFO } from "@/constant/storage.key";
+import { setNext } from "@/redux/features/loneApplication/loneApplication";
 
 const securitySchema = z
   .object({
@@ -40,7 +43,7 @@ const securitySchema = z
       .max(20, "Password cannot exceed 20 characters")
       .regex(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:'",.<>/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};:'",.<>/?]{8,}$/,
-        "Password must contain at least 1 letter, 1 number, and 1 special character"
+        "Password must contain at least 1 letter, 1 number, and 1 special character",
       ),
     confirmPassword: z.string(),
     securityQuestion: z.string({
@@ -51,7 +54,7 @@ const securitySchema = z
       .min(1, "Security answer is required")
       .regex(
         /^[0-9a-zA-Z!@$._\s-]+$/,
-        "Security answer contains invalid characters"
+        "Security answer contains invalid characters",
       ),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -82,7 +85,8 @@ export default function SecurityInfoForm() {
 
   function onSubmit(values: z.infer<typeof securitySchema>) {
     console.log(values);
-    dispatch(nextStep());
+    setToLocalStorageAsStringify(SECURITY_INFO, values);
+    dispatch(setNext());
   }
 
   return (

@@ -28,7 +28,7 @@ export interface IUser {
   contactNO: string;
   email: string;
   password: string;
-  role?: "borrower" | "lender" | "admin" | "super_admin";
+  role: "borrower" | "lender" | "admin";
   profilePhoto: string;
   passwordChangedAt?: Date;
   isEmailVerified?: boolean;

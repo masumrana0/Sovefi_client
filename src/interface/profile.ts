@@ -1,7 +1,7 @@
 import { IUser } from "./auth";
 
 export type IProfile = {
-  user: IUser | string;
+  user: IUser;
   address: {
     street: string;
     apartment?: string;

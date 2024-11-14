@@ -4,7 +4,6 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -24,25 +23,31 @@ import {
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAppDispatch } from "@/redux/hook";
-import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
+
+import { setToLocalStorageAsStringify } from "@/utils/local-storage";
+import { LOAN_INFO } from "@/constant/storage.key";
+import { setNext } from "@/redux/features/loneApplication/loneApplication";
 
 const formSchema = z.object({
   applicationType: z.enum(["individual", "joint"], {
     required_error: "Please select an application type",
   }),
-  loanPurpose: z.enum(
+  primaryPurposeOfLoan: z.enum(
     ["auto-refinance", "home-improvement", "debt-consolidation"],
     {
       required_error: "Please select a loan purpose",
-    }
+    },
   ),
   referralSource: z.enum(["search", "social", "friend"], {
     required_error: "Please select how you heard about us",
   }),
-  referralDetails: z.string().optional(),
-  zipCode: z.string().regex(/^\d{5}$/, "ZIP code must be 5 digits"),
-  loanAmount: z.number().positive("Loan amount must be positive"),
-  loanTerm: z.number().int().positive("Loan term must be a positive integer"),
+  additionalDetails: z.string().optional(),
+  postalCode: z.string().regex(/^\d{5}$/, "ZIP code must be 5 digits"),
+  requestedLoanAmount: z.number().positive("Loan amount must be positive"),
+  loanDuration: z
+    .number()
+    .int()
+    .positive("Loan term must be a positive integer"),
   paymentMethod: z.enum(["autopay", "invoice"], {
     required_error: "Please select a payment method",
   }),
@@ -61,8 +66,8 @@ export default function LoanInfoForm() {
   });
 
   function onSubmit(values: FormData) {
-    console.log(values);
-    dispatch(nextStep());
+    setToLocalStorageAsStringify(LOAN_INFO, values);
+    dispatch(setNext());
   }
 
   return (
@@ -92,7 +97,7 @@ export default function LoanInfoForm() {
 
         <FormField
           control={form.control}
-          name="loanPurpose"
+          name="primaryPurposeOfLoan"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-xl">Primary Loan Purpose</FormLabel>
@@ -149,7 +154,7 @@ export default function LoanInfoForm() {
           />
           <FormField
             control={form.control}
-            name="referralDetails"
+            name="additionalDetails"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-xl">
@@ -166,7 +171,7 @@ export default function LoanInfoForm() {
 
         <FormField
           control={form.control}
-          name="zipCode"
+          name="postalCode"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-xl">ZIP Code</FormLabel>
@@ -181,7 +186,7 @@ export default function LoanInfoForm() {
         <div className="grid gap-6 md:grid-cols-2">
           <FormField
             control={form.control}
-            name="loanAmount"
+            name="requestedLoanAmount"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-xl">Loan Amount</FormLabel>
@@ -199,7 +204,7 @@ export default function LoanInfoForm() {
           />
           <FormField
             control={form.control}
-            name="loanTerm"
+            name="loanDuration"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-xl">Loan Term (months)</FormLabel>

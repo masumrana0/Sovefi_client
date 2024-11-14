@@ -25,29 +25,34 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { nextStep } from "@/redux/features/applayLoanSteps/applayLoanSteps";
 import { useAppDispatch } from "@/redux/hook";
+import { setToLocalStorageAsStringify } from "@/utils/local-storage";
+import { PERSONAL_INFO } from "@/constant/storage.key";
+import { setNext } from "@/redux/features/loneApplication/loneApplication";
 
 const personalInfoSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  middleInitial: z.string().max(1).optional(),
-  lastName: z.string().min(1, "Last name is required"),
+  name: z.object({
+    firstName: z.string().min(1, "First name is required"),
+    middleName: z.string().max(1).optional(),
+    lastName: z.string().min(1, "Last name is required"),
+  }),
   email: z.string().email("Invalid email address"),
-  address: z.string().min(1, "Address is required"),
+  address: z.object({
+    fullAddress: z.string().min(1, "City is required"),
+    city: z.string().min(1, "City is required"),
+    state: z.string().min(2, "State is required"),
+    zipCode: z.string().regex(/^\d{5}$/, "ZIP code must be 5 digits"),
+  }),
   aptType: z.string().optional(),
-  city: z.string().min(1, "City is required"),
-  state: z.string().min(2, "State is required"),
-  zipCode: z.string().regex(/^\d{5}$/, "ZIP code must be 5 digits"),
-  phoneNumber: z.string().regex(/^\d{10}$/, "Phone number must be 10 digits"),
-  timeAtAddress: z.object({
+
+  contactNo: z.string(),
+  timeAtCurrentAddress: z.object({
     years: z.number().min(0),
     months: z.number().min(0).max(11),
   }),
   housingStatus: z.string().min(1, "Housing status is required"),
-  ssn: z.string().regex(/^\d{9}$/, "SSN must be 9 digits"),
-  dateOfBirth: z
-    .string()
-    .regex(/^\d{2}\/\d{2}\/\d{4}$/, "Invalid date format (MM/DD/YYYY)"),
+  ssn: z.string(),
+  dateOfBirth: z.string(),
   driversLicense: z.string().min(1, "Driver's license is required"),
   citizenship: z.array(z.string()).min(1, "Please select at least one country"),
   workStatus: z.string().min(1, "Work status is required"),
@@ -59,7 +64,7 @@ const personalInfoSchema = z.object({
           amount: z.number().optional(),
           source: z.string().optional(),
           description: z.string().optional(),
-        })
+        }),
       )
       .optional(),
   }),
@@ -92,7 +97,7 @@ export default function PersonalInfoForm() {
   const form = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
-      timeAtAddress: { years: 0, months: 0 },
+      timeAtCurrentAddress: { years: 0, months: 0 },
       citizenship: [],
       otherIncome: {
         hasOtherIncome: false,
@@ -102,8 +107,8 @@ export default function PersonalInfoForm() {
   });
 
   function onSubmit(values: z.infer<typeof personalInfoSchema>) {
-    console.log(values);
-    dispatch(nextStep());
+    setToLocalStorageAsStringify(PERSONAL_INFO, values);
+    dispatch(setNext());
   }
 
   return (
@@ -116,7 +121,7 @@ export default function PersonalInfoForm() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
-                name="firstName"
+                name="name.firstName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">First</FormLabel>
@@ -130,7 +135,7 @@ export default function PersonalInfoForm() {
 
               <FormField
                 control={form.control}
-                name="middleInitial"
+                name="name.middleName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">MI</FormLabel>
@@ -144,7 +149,7 @@ export default function PersonalInfoForm() {
 
               <FormField
                 control={form.control}
-                name="lastName"
+                name="name.lastName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">Last</FormLabel>
@@ -174,7 +179,7 @@ export default function PersonalInfoForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="address"
+                name="address.fullAddress"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">
@@ -218,7 +223,7 @@ export default function PersonalInfoForm() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
-                name="city"
+                name="address.city"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">City</FormLabel>
@@ -232,7 +237,7 @@ export default function PersonalInfoForm() {
 
               <FormField
                 control={form.control}
-                name="state"
+                name="address.state"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">State</FormLabel>
@@ -260,7 +265,7 @@ export default function PersonalInfoForm() {
 
               <FormField
                 control={form.control}
-                name="zipCode"
+                name="address.zipCode"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">Zip Code</FormLabel>
@@ -276,7 +281,7 @@ export default function PersonalInfoForm() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
-                name="phoneNumber"
+                name="contactNo"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xl">
@@ -293,7 +298,7 @@ export default function PersonalInfoForm() {
               <div className="grid grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
-                  name="timeAtAddress.years"
+                  name="timeAtCurrentAddress.years"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xl">Years</FormLabel>
@@ -313,7 +318,7 @@ export default function PersonalInfoForm() {
 
                 <FormField
                   control={form.control}
-                  name="timeAtAddress.months"
+                  name="timeAtCurrentAddress.months"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xl">Months</FormLabel>
@@ -443,8 +448,8 @@ export default function PersonalInfoForm() {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== country
-                                          )
+                                            (value) => value !== country,
+                                          ),
                                         );
                                   }}
                                 />

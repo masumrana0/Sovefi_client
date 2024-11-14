@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import { ChevronDown, Download } from "lucide-react";
 import {
@@ -14,13 +13,16 @@ import SecurityInfoForm from "@/components/pageComponets/security-info-form";
 import PersonalInfoForm from "@/components/pageComponets/personalInfo";
 import ConfirmSubmit from "@/components/pageComponets/confarmSubmation";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { setSpecificStep } from "@/redux/features/loneApplication/loneApplication";
 
 export default function ApplyLoans() {
   const [isBasicReqOpen, setIsBasicReqOpen] = React.useState(true);
 
+  // redux
+  const dispatch = useAppDispatch();
   const currentStep = useAppSelector(
-    (state) => state.loanApplicationSteps.step
+    (state) => state.loanApplicationSteps.step,
   );
 
   console.log("Current step: ", currentStep);
@@ -37,6 +39,10 @@ export default function ApplyLoans() {
     link.click();
 
     document.body.removeChild(link);
+  };
+
+  const handleClickStepper = (step: number) => {
+    dispatch(setSpecificStep(step));
   };
 
   return (
@@ -61,30 +67,30 @@ export default function ApplyLoans() {
         <Tabs defaultValue="loan-info" className="mb-8">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger
-              className="bg-primary text-white h-16"
+              onClick={() => handleClickStepper(1)}
+              className={`bg-primary ${currentStep === 1 ? "bg-gray-800" : ""} text-white h-16`}
               value="loan-info"
-              disabled={currentStep < 1}
             >
               Loan Information
             </TabsTrigger>
             <TabsTrigger
-              className="bg-yellow-300 text-black h-16"
+              onClick={() => handleClickStepper(2)}
+              className={`bg-yellow-300 ${currentStep === 2 ? "bg-gray-800" : ""} text-white h-16`}
               value="personal-info"
-              disabled={currentStep < 2}
             >
               Personal Information
             </TabsTrigger>
             <TabsTrigger
-              className="bg-orange-400 text-black h-16"
+              onClick={() => handleClickStepper(3)}
+              className={`bg-orange-400 ${currentStep === 3 ? "bg-gray-800" : ""} text-white h-16`}
               value="security-info"
-              disabled={currentStep < 3}
             >
               Security Information
             </TabsTrigger>
             <TabsTrigger
-              className="bg-purple-400 text-black h-16"
+              onClick={() => handleClickStepper(4)}
+              className={`bg-orange-400 ${currentStep === 4 ? "bg-gray-800" : ""} text-white h-16`}
               value="confirm-submit"
-              disabled={currentStep < 4}
             >
               Confirm and Submit
             </TabsTrigger>
@@ -98,12 +104,12 @@ export default function ApplyLoans() {
                 onOpenChange={setIsBasicReqOpen}
                 className="mb-8"
               >
-                <CollapsibleTrigger className="flex w-full items-center justify-between text-lg font-bold text-primary">
+                <CollapsibleTrigger className="flex w-full items-center justify-between mt-5 text-lg font-bold text-primary">
                   Basic Requirements
                   <ChevronDown
                     className={cn(
                       "h-5 w-5 transition-transform",
-                      isBasicReqOpen && "rotate-180"
+                      isBasicReqOpen && "rotate-180",
                     )}
                   />
                 </CollapsibleTrigger>

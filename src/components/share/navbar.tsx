@@ -7,6 +7,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./themeToggle";
+import { useAppSelector } from "@/redux/hook";
+import Avatar from "../shared/Avatar";
+import AvatarWithDropdown from "../shared/AvatarWithDropdown";
 // import { useAppSelector } from "@/redux/hook";
 
 export default function Navbar() {
@@ -14,7 +17,7 @@ export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // const isLoggedin = useAppSelector((state) => state.auth.isLoggedIn);
+  const isLoggedin = useAppSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     setIsMounted(true); // Ensure this runs on the client
@@ -29,11 +32,18 @@ export default function Navbar() {
       <Link href="/financing">Financing</Link>
       <Link href="/about">About</Link>
       <Link href="/contact">Contact</Link>
-      <Link href="/auth">
-        <Button className="capitalize" variant="outline">
-          Sign In
-        </Button>
-      </Link>
+
+      {isLoggedin ? (
+        <AvatarWithDropdown />
+      ) : (
+        <Link href="/auth">
+          {" "}
+          <Button className="capitalize" variant="outline">
+            Sign In
+          </Button>
+        </Link>
+      )}
+
       <Link href="/applyLoans">
         <Button className="capitalize">APPLY NOW</Button>
       </Link>

@@ -5,10 +5,13 @@ import QuestionsSection from "@/components/pageComponets/questionSection";
 import RateCalculator from "@/components/pageComponets/rateCalculator";
 import Refineance from "@/components/pageComponets/refineance";
 import TestimonialsSection from "@/components/pageComponets/testimonialsSection";
+import Footer from "@/components/share/footer";
+import Navbar from "@/components/share/navbar";
 
 export default function Home() {
   return (
     <div>
+      <Navbar />
       <div className="mt-24">
         <HeroSection />
         <RateCalculator />
@@ -18,6 +21,7 @@ export default function Home() {
         <FeaturesSection />
         <TestimonialsSection />
       </div>
+      <Footer />
     </div>
   );
 }
