@@ -8,14 +8,14 @@ const AdminStatistic = dynamic(() => import("../statistic/AdminStatistic"), {
 });
 const PartnershipOpportunitiesChart = dynamic(
   () => import("../statistic/PartnershipOpportunitiesChart"),
-  { ssr: false }
+  { ssr: false },
 );
 const ProfitChart = dynamic(() => import("../statistic/ProfitChart"), {
   ssr: false,
 });
 const VisitorsAnalytics = dynamic(
   () => import("../statistic/VisitorsAnalytics"),
-  { ssr: false }
+  { ssr: false },
 );
 
 const AdminBoardHome = () => {

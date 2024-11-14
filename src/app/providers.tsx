@@ -14,10 +14,10 @@ const Providers = ({ children }: { children: ReactNode }) => {
         document.documentElement.classList.add(savedTheme);
       } else {
         const userPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
+          "(prefers-color-scheme: dark)",
         ).matches;
         document.documentElement.classList.add(
-          userPrefersDark ? "dark" : "light"
+          userPrefersDark ? "dark" : "light",
         );
       }
     }

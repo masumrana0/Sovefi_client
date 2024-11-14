@@ -397,7 +397,7 @@ const StatusModal = ({ isOpen, onClose, type, title, message }: any) => {
           transition={{ type: "spring", duration: 0.5 }}
           className={cn(
             "w-full rounded-lg bg-background p-6 shadow-lg",
-            isSuccess ? "border-green-200" : "border-red-200"
+            isSuccess ? "border-green-200" : "border-red-200",
           )}
         >
           <DialogHeader className="space-y-4">
@@ -428,7 +428,7 @@ const StatusModal = ({ isOpen, onClose, type, title, message }: any) => {
                 "w-full transition-all duration-200",
                 isSuccess
                   ? "bg-green-500 hover:bg-green-600"
-                  : "bg-red-500 hover:bg-red-600"
+                  : "bg-red-500 hover:bg-red-600",
               )}
             >
               {isSuccess ? "Continue" : "Try Again"}
@@ -505,7 +505,7 @@ const ConfirmSubmit = () => {
       .catch((error) => {
         setErrorMessage(
           error.message ||
-            "An error occurred while submitting your application."
+            "An error occurred while submitting your application.",
         );
         setShowErrorModal(true);
       });

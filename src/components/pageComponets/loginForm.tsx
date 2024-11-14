@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => {
   const [setSignin, { isLoading }] = useSigninMutation();
 
   const onLoginSubmit = async (
-    values: z.infer<typeof authSchema.loginSchema>
+    values: z.infer<typeof authSchema.loginSchema>,
   ) => {
     try {
       const res = await setSignin(values).unwrap();
