@@ -124,7 +124,7 @@ const loanApplicationSlice = createSlice({
     /** Updates personal information step */
     updatePersonalInformation: (
       state,
-      action: PayloadAction<ILoanApplication["personalInformation"]>
+      action: PayloadAction<ILoanApplication["personalInformation"]>,
     ) => {
       state.personalInfo = action.payload;
       setToLocalStorageAsStringify(PERSONAL_INFO, action.payload);
@@ -133,7 +133,7 @@ const loanApplicationSlice = createSlice({
     /** Updates security information step */
     updateSecurityInformation: (
       state,
-      action: PayloadAction<ILoanApplication["securityInformation"]>
+      action: PayloadAction<ILoanApplication["securityInformation"]>,
     ) => {
       state.securityInfo = action.payload;
       setToLocalStorageAsStringify(SECURITY_INFO, action.payload);
