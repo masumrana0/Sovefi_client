@@ -5,6 +5,7 @@ import {
 } from "@/constant/storage.key";
 import {
   getFromLocalStorageAsParse,
+  setToLocalStorage,
   setToLocalStorageAsStringify,
 } from "@/utils/local-storage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -77,7 +78,7 @@ const initialState: LoanApplicationState = {
   loanInfo: getFromLocalStorageAsParse(LOAN_INFO),
   personalInfo: getFromLocalStorageAsParse(PERSONAL_INFO),
   securityInfo: getFromLocalStorageAsParse(SECURITY_INFO),
-  step: getFromLocalStorageAsParse("step") || 1,
+  step: getFromLocalStorageAsParse("step"),
 };
 
 const loanApplicationSlice = createSlice({
@@ -87,31 +88,31 @@ const loanApplicationSlice = createSlice({
     setNext: (state) => {
       const nextStep = state.step + 1;
       state.step = nextStep;
-      setToLocalStorageAsStringify("step", nextStep);
+      setToLocalStorage("step", nextStep);
     },
     setPrevious: (state) => {
       const nextStep = state.step - 1;
       if (nextStep > 0) {
-        setToLocalStorageAsStringify("step", nextStep);
+        setToLocalStorage("step", nextStep);
         state.step = nextStep;
       }
     },
     setSpecificStep: (state, action: PayloadAction<number>) => {
       const currentStep = state.step;
       if (currentStep > action.payload) {
-        setToLocalStorageAsStringify("step", action.payload);
+        setToLocalStorage("step", action.payload);
         state.step = action.payload;
       } else if (state.loanInfo && action.payload == 1) {
-        setToLocalStorageAsStringify("step", action.payload);
+        setToLocalStorage("step", action.payload);
         state.step = action.payload;
       } else if (state.personalInfo && action.payload == 2) {
-        setToLocalStorageAsStringify("step", action.payload);
+        setToLocalStorage("step", action.payload);
         state.step = action.payload;
       } else if (state.securityInfo && action.payload == 3) {
-        setToLocalStorageAsStringify("step", action.payload);
+        setToLocalStorage("step", action.payload);
         state.step = action.payload;
       } else if (currentStep == 3 && action.payload == 4) {
-        setToLocalStorageAsStringify("step", action.payload);
+        setToLocalStorage("step", action.payload);
         state.step = action.payload;
       }
     },
@@ -123,7 +124,7 @@ const loanApplicationSlice = createSlice({
     /** Updates personal information step */
     updatePersonalInformation: (
       state,
-      action: PayloadAction<ILoanApplication["personalInformation"]>,
+      action: PayloadAction<ILoanApplication["personalInformation"]>
     ) => {
       state.personalInfo = action.payload;
       setToLocalStorageAsStringify(PERSONAL_INFO, action.payload);
@@ -132,7 +133,7 @@ const loanApplicationSlice = createSlice({
     /** Updates security information step */
     updateSecurityInformation: (
       state,
-      action: PayloadAction<ILoanApplication["securityInformation"]>,
+      action: PayloadAction<ILoanApplication["securityInformation"]>
     ) => {
       state.securityInfo = action.payload;
       setToLocalStorageAsStringify(SECURITY_INFO, action.payload);

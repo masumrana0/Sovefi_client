@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setSpecificStep } from "@/redux/features/loneApplication/loneApplication";
 
-export default function ApplyLoans() {
+const ApplyLoans = () => {
   const [isBasicReqOpen, setIsBasicReqOpen] = React.useState(true);
 
   // redux
@@ -152,4 +152,6 @@ export default function ApplyLoans() {
       </div>
     </div>
   );
-}
+};
+
+export default ApplyLoans;

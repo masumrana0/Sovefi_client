@@ -13,7 +13,7 @@ export const getFromLocalStorageAsParse = (key: string) => {
     return "";
   }
   const stringifyData = localStorage.getItem(key);
-  const parseData = JSON.parse(stringifyData as string);
+  const parseData = stringifyData ? JSON.parse(stringifyData as string) : null;
   return parseData;
 };
 
@@ -41,7 +41,7 @@ export const removeFromLocalStorage = (key: string) => {
 
 export const setThemeStatusLocalStorage = (
   key: string,
-  value: string,
+  value: string
 ): void => {
   if (!key || typeof window === "undefined") {
     return;
