@@ -42,13 +42,10 @@ export default function HeroSection() {
             Refinance Your Car
           </Button>
           <Button className="bg-white text-black" variant="ghost">
-            PNC Total Auto
-          </Button>
-          <Button className="bg-white text-black" variant="ghost">
             Have Questions?
           </Button>
           <Button variant="default" className="ml-auto">
-            Apply Now
+            <Link href="/applyLoans">Apply Now</Link>
           </Button>
         </div>
       </div>

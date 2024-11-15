@@ -41,7 +41,7 @@ export const removeFromLocalStorage = (key: string) => {
 
 export const setThemeStatusLocalStorage = (
   key: string,
-  value: string
+  value: string,
 ): void => {
   if (!key || typeof window === "undefined") {
     return;

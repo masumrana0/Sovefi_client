@@ -78,7 +78,7 @@ const initialState: LoanApplicationState = {
   loanInfo: getFromLocalStorageAsParse(LOAN_INFO),
   personalInfo: getFromLocalStorageAsParse(PERSONAL_INFO),
   securityInfo: getFromLocalStorageAsParse(SECURITY_INFO),
-  step: getFromLocalStorageAsParse("step"),
+  step: getFromLocalStorageAsParse("step") || 1,
 };
 
 const loanApplicationSlice = createSlice({
