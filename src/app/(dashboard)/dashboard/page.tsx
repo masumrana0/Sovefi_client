@@ -1,5 +1,13 @@
+"use client";
+
 import React from "react";
-import AdminBoardHome from "../_components/home/Page";
+import dynamic from "next/dynamic";
+import GlobalLoading from "@/app/loading";
+
+const AdminBoardHome = dynamic(() => import("../_components/home/Page"), {
+  ssr: false, // Disables server-side rendering
+  loading: () => <GlobalLoading />,
+});
 
 const DashboardLandingPage = () => {
   return (

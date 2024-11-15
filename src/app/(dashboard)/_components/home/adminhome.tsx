@@ -1,21 +1,18 @@
 "use client";
-
 import dynamic from "next/dynamic";
-
-// Dynamically import components with ssr: false to disable server-side rendering
 const AdminStatistic = dynamic(() => import("../statistic/AdminStatistic"), {
   ssr: false,
 });
 const PartnershipOpportunitiesChart = dynamic(
   () => import("../statistic/PartnershipOpportunitiesChart"),
-  { ssr: false },
+  { ssr: false }
 );
 const ProfitChart = dynamic(() => import("../statistic/ProfitChart"), {
   ssr: false,
 });
 const VisitorsAnalytics = dynamic(
   () => import("../statistic/VisitorsAnalytics"),
-  { ssr: false },
+  { ssr: false }
 );
 
 const AdminBoardHome = () => {

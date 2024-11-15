@@ -8,7 +8,7 @@ import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./themeToggle";
 import { useAppSelector } from "@/redux/hook";
-import Avatar from "../shared/Avatar";
+// import Avatar from "../shared/Avatar";
 import AvatarWithDropdown from "../shared/AvatarWithDropdown";
 // import { useAppSelector } from "@/redux/hook";
 

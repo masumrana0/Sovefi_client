@@ -1,7 +1,6 @@
 "use client";
 
 import { useAppSelector } from "@/redux/hook";
-import { useEffect, useState } from "react";
 import NavTopSection from "./dnavtopsection";
 import DNavBottomSection from "./navbottomsection";
 import { dashboardMenu } from "@/content/dashboard";

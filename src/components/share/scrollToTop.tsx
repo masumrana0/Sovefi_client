@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 
 const ScrollToTop: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMounted, setIsMounted] = useState(false);
 
   const scrollToTop = () => {
