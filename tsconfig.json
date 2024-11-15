@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/pageComponets/signInFormtsx"
-  ],
+, "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }

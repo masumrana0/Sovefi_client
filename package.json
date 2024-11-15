@@ -16,7 +16,6 @@
     "prettier:fix": "prettier --write .",
     "lint:check": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install",
     "test:check": "npm run lint && npm run prettier:check",
     "test:fix": "npm run prettier:fix && npm run lint:fix",
     "test:all": "npm run test:fix && npm run test:check"
@@ -48,7 +47,7 @@
     "framer-motion": "^11.11.16",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.454.0",
-    "next": "^15.0.2",
+    "next": "^14.2.18",
     "react": "^18.2.0",
     "react-apexcharts": "^1.5.0",
     "react-datepicker": "^7.5.0",
