@@ -1,14 +1,26 @@
-import BuyACar from "@/components/pageComponets/buyACar";
-import FeaturesSection from "@/components/pageComponets/features";
-import HeroSection from "@/components/pageComponets/hero";
-import QuestionsSection from "@/components/pageComponets/questionSection";
-import RateCalculator from "@/components/pageComponets/rateCalculator";
-import Refineance from "@/components/pageComponets/refineance";
-import TestimonialsSection from "@/components/pageComponets/testimonialsSection";
-import Footer from "@/components/share/footer";
-import Navbar from "@/components/share/navbar";
+import dynamic from "next/dynamic";
 
-export default function Home() {
+const BuyACar = dynamic(() => import("@/components/pageComponets/buyACar"));
+const FeaturesSection = dynamic(
+  () => import("@/components/pageComponets/features")
+);
+const HeroSection = dynamic(() => import("@/components/pageComponets/hero"));
+const QuestionsSection = dynamic(
+  () => import("@/components/pageComponets/questionSection")
+);
+const RateCalculator = dynamic(
+  () => import("@/components/pageComponets/rateCalculator")
+);
+const Refineance = dynamic(
+  () => import("@/components/pageComponets/refineance")
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/pageComponets/testimonialsSection")
+);
+const Footer = dynamic(() => import("@/components/share/footer"));
+const Navbar = dynamic(() => import("@/components/share/navbar"));
+
+const Home = () => {
   return (
     <div>
       <Navbar />
@@ -24,4 +36,6 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export default Home;
